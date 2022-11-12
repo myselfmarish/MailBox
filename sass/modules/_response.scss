@@ -1,0 +1,32 @@
+#responseBox{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 500px;
+    height: 500px;
+    text-align: center;
+    padding: 20px;
+    background-color: #a52a2aa1;
+    border-radius: 10%;
+    #closeResponse{
+        font-size: 30px;
+        background: none;
+        position: absolute;
+        right: 35px;
+        &:hover{
+            color: white;
+            cursor: pointer;
+        }
+    }
+    #response{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.hidden{
+    display: none;
+}
