@@ -1,4 +1,11 @@
 import { SendMail } from "./components/mailer.js";
+const responseBox = document.getElementById("responseBox"),
+      responseData = document.getElementById("response"),
+      closeWindow = document.getElementById("closeResponse");
+        responseBox.classList.add("hidden");
+        closeWindow.addEventListener("click",()=>{
+            responseBox.classList.add("hidden");
+        },false);
 
 (() => {
     const { createApp } = Vue
@@ -12,19 +19,20 @@ import { SendMail } from "./components/mailer.js";
 
         methods: {
             processMailFailure(result) {
-                // show a failure message in the UI
-                // use this.$refs to connect to the elements on the page and mark any empty fields/inputs with an error class
-                alert('failure! and if you keep using an alert, DOUBLE failure!');        
-                // show some errors in the UI here to let the user know the mail attempt was successful
+                let parsedResponse = JSON.parse(result.message).message;
+                responseData.innerHTML = "";
+                for (const message of parsedResponse){
+                    responseData.innerHTML+=message+"<br>";
+                }
+                responseBox.classList.remove("hidden");
             },
 
             processMailSuccess(result) {
-                // show a success message in the UI
-                alert("success! but don't EVER use alerts. They are gross.");        
-                // show some UI here to let the user know the mail attempt was successful
+                responseData.innerHTML=result.message;
+                responseBox.classList.remove("hidden");
             },
 
-            processMail(event) {        
+            processMail(event) {
                 // use the SendMail component to process mail
                 SendMail(this.$el.parentNode)
                     .then(data => this.processMailSuccess(data))
