@@ -4,8 +4,8 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
 if ($_POST) {
-    $recipient = "Your email goes here";
-    $subject = 'Email from site';
+    $recipient = "m_shevchenko@fanshaweonline.ca";
+    $subject = 'Email from Mailer';
     $visitor_name         = "";
     $visitor_email        = "";
     $message      = "";
@@ -52,8 +52,8 @@ if ($_POST) {
         array_push($fail, "message field is empty");
     }
 
-    $headers = "From: i_am_awesome@awesome.com" . "\r\n" .
-    "Reply-To: jump_off_a_bridge@example.com" . "\r\n" .
+    $headers = "From:" . strval($visitor_email) . "\r\n" .
+    "Reply-To: professor@fanshaweonline.ca" . "\r\n" .
     "X-Mailer: PHP/" . phpversion();
     
     if (count($fail)==0) {
